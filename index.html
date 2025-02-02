@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proxy Test</title>
+    <script>
+        async function testProxy() {
+            try {
+                const response = await fetch('https://petehuu.github.io/proxy-server?action_route=Coordinates&lat=59.977763368096134&lon=24.397211177578832&srs=EPSG:4326&targetSRS=EPSG:3067', {
+                    method: 'GET',
+                    mode: 'no-cors'
+                });
+
+                // Varmistetaan, että pyyntö onnistui
+                const textData = await response.text();
+                document.getElementById('result').innerText = textData;
+            } catch (error) {
+                document.getElementById('result').innerText = 'Error: ' + error.message;
+            }
+        }
+        window.onload = testProxy;
+    </script>
+</head>
+<body>
+    <h1>Proxy Test</h1>
+    <pre id="result">Loading...</pre>
+</body>
+</html>
